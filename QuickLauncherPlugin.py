@@ -9,6 +9,7 @@ def XSILoadPlugin(in_reg):
     in_reg.Minor = 0
     in_reg.RegisterCommand("QuickLauncher", "QuickLauncher")
     in_reg.RegisterCommand("QuickLauncher_Reloader", "QuickLauncher_Reloader")
+    in_reg.RegisterEvent("QuickLauncher_Startup", C.siOnStartup)
     return True
 
 
@@ -28,4 +29,10 @@ def QuickLauncher_Reloader_Execute():
     log("QuickLauncher_Reloader_Execute called", C.siVerbose)
     from quicklauncher import manager
     manager.get_data(False)  # reload cache on disk
+    return True
+
+
+def QuickLauncher_Startup_OnEvent(in_ctxt):
+    log("QuickLauncher_Startup_OnEvent called", C.siVerbose)
+    Application.QuickLauncher_Reloader()
     return True
