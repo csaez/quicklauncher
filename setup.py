@@ -5,7 +5,7 @@ setup(
     version="0.1.0",
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     package_data={"quicklauncher.layout": ["ui/*.*", "ui/images/*.*"],
-                  "quicklauncher": ["Scripts/*.*", "config/*.*"]},
+                  "quicklauncher": ["scripts/*.*", "config/*.*"]},
     author="Cesar Saez",
     author_email="cesarte@gmail.com",
     description="A simple QT menu to execute Softimage commands and scripts.",
