@@ -8,7 +8,9 @@ def XSILoadPlugin(in_reg):
     in_reg.Major = 1
     in_reg.Minor = 0
     in_reg.RegisterCommand("QuickLauncher", "QuickLauncher")
-    in_reg.RegisterCommand("QuickLauncher_Reloader", "QuickLauncher_Reloader")
+    in_reg.RegisterCommand("QuickLauncher Reloader", "QuickLauncher_Reloader")
+    in_reg.RegisterCommand("QuickLauncher Preferences",
+                           "QuickLauncher_Preferences")
     in_reg.RegisterEvent("QuickLauncher_Startup", C.siOnStartup)
     return True
 
@@ -25,10 +27,17 @@ def QuickLauncher_Execute():
     show_qt(Menu, modal=True, onshow_event=lambda x: x.move(pos.x(), pos.y()))
 
 
-def QuickLauncher_Reloader_Execute():
-    log("QuickLauncher_Reloader_Execute called", C.siVerbose)
-    from quicklauncher import manager
-    manager.get_data(False)  # reload cache on disk
+def QuickLauncherReloader_Execute():
+    log("QuickLauncherReloader_Execute called", C.siVerbose)
+    from quicklauncher.manager import Manager
+    Manager().scan()  # reload cache on disk
+    return True
+
+
+def QuickLauncherPreferences_Execute():
+    log("QuickLauncherPreferences_Execute called", C.siVerbose)
+    from quicklauncher.layout.prefs import Prefs
+    show_qt(Prefs)
     return True
 
 
