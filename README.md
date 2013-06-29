@@ -9,7 +9,7 @@ Dependencies
 
 Installation
 ------------
-You can get a pre-packed xsiaddon from [here](http://goo.gl/mg5TE) or get the package from the Python Package Index.
+You can get a pre-packed xsiaddon from [here](http://goo.gl/hOOSP) or get the package from the Python Package Index.
 
     pip install quicklauncher
 
