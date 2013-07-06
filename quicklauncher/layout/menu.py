@@ -41,7 +41,7 @@ class Menu(QMenu):
         for x in self.children():
             if all([isinstance(x, QtGui.QAction), x.isVisible(), len(x.text())]):
                 self.execute_trigger(x)
-                break
+                return
         self.close()
 
     def execute_trigger(self, action):

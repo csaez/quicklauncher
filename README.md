@@ -9,11 +9,15 @@ Dependencies
 
 Installation
 ------------
-You can get a pre-packed xsiaddon from [here](http://goo.gl/hOOSP) or get the package from the Python Package Index.
+- Grab a pre-packed xsiaddon from [here](http://goo.gl/hOOSP) and drop it on a softimage viewport.
+
+or...
+
+- Get it from the Python Package Index.
 
     pip install quicklauncher
 
-Once it's installed just copy `QuickLauncherPlugin.py` file to a softimage plugin directory.
+> Once it's installed just copy `QuickLauncherPlugin.py` file to a softimage plugin directory.
 
 Ussage
 ------
