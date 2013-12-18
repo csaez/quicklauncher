@@ -5,7 +5,7 @@ A simple menu to find and execute Softimage commands and scripts.
 Dependencies
 ------------
 - [PyQt For Softimage](https://github.com/caron/PyQtForSoftimage)
-- [wishlib >= 0.1.4](https://github.com/wishdev-project/wishlib)
+- [wishlib](https://github.com/wishdev-project/wishlib)
 
 Installation
 ------------

@@ -17,17 +17,19 @@ class Manager(object):
 
     def scan(self):
         data = dict()
-        # get softimage commands without arguments or with default values
+        # get all softimage commands without arguments or with default values
         for cmd in si.Commands:
             if not cmd.Arguments.Count or all([arg.Value for arg in cmd.Arguments]):
                 cmd_name = str(cmd.Name)
                 data[cmd_name] = cmd_name
         # get custom scripts
-        for script in os.listdir(self.script_dir):
-            name = script
-            script = os.path.join(self.script_dir, script)
-            if os.path.isfile(script):
-                data[name] = script
+        for root, dirnames, filenames in os.walk(self.script_dir):
+            if ".git" in root:
+                continue
+            for filename in filenames:
+                script = os.path.join(root, filename)
+                if os.path.isfile(script) and not filename.startswith("."):
+                    data[filename] = script
         # save to file
         with open(self.CACHE_FILE, "w") as f:
             json.dump(data, f)

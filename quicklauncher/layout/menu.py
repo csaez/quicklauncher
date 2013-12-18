@@ -46,5 +46,5 @@ class Menu(QMenu):
 
     def execute_trigger(self, action):
         key = str(action.text())
-        self.manager.execute(key)
         self.close()
+        self.manager.execute(key)

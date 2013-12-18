@@ -1,2 +1,3 @@
 v0.1.0, 06-27-2013 -- Initial release.
 v0.1.1, 06-29-2013 -- Manager, user folder and code cleanup
+v0.1.3, 12-18-2013 -- Script Packages
