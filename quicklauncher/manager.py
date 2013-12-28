@@ -29,7 +29,9 @@ class Manager(object):
             for filename in filenames:
                 script = os.path.join(root, filename)
                 if os.path.isfile(script) and not filename.startswith("."):
-                    data[filename] = script
+                    # include package reference on key
+                    key = script.replace(self.script_dir, "")[1:]
+                    data[key] = script
         # save to file
         with open(self.CACHE_FILE, "w") as f:
             json.dump(data, f)
