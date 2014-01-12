@@ -23,12 +23,16 @@ class Manager(object):
                 cmd_name = str(cmd.Name)
                 data[cmd_name] = cmd_name
         # get custom scripts
+        EXCEPTIONS = ["README.md"]
         for root, dirnames, filenames in os.walk(self.script_dir):
             if ".git" in root:
                 continue
             for filename in filenames:
                 script = os.path.join(root, filename)
-                if os.path.isfile(script) and not filename.startswith("."):
+                validation = [os.path.isfile(script),
+                              not filename.startswith("."),
+                              filename not in EXCEPTIONS]
+                if all(validation):
                     # include package reference on key
                     key = script.replace(self.script_dir, "")[1:]
                     data[key] = script
