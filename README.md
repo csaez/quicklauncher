@@ -4,20 +4,20 @@ A simple menu to find and execute Softimage commands and scripts.
 
 Dependencies
 ------------
-- [PyQt For Softimage](https://github.com/caron/PyQtForSoftimage)
-- [wishlib](https://github.com/wishdev-project/wishlib)
+- [PyQt For Softimage](http://github.com/caron/PyQtForSoftimage)
+- [wishlib](http://github.com/wishdev-project/wishlib)
 
 Installation
 ------------
-- Grab a pre-packed xsiaddon from [here](http://goo.gl/e2WWN7) and drop it on a softimage viewport.
+Grab a pre-packed xsiaddon from [here](http://goo.gl/e2WWN7) (includes wishlib)
+and drop it on a softimage viewport.
 
 or...
 
-- Get it from the Python Package Index.
+Clone the repo, copy `quicklauncher_plugin.py` file to a softimage plugin
+directory and install the python modules as following:
 
-    pip install quicklauncher
-
-> Once it's installed just copy `QuickLauncherPlugin.py` file to a softimage plugin directory.
+    python setup.py install
 
 Ussage
 ------

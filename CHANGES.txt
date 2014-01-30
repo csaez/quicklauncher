@@ -1,3 +1,19 @@
-v0.1.0, 06-27-2013 -- Initial release.
-v0.1.1, 06-29-2013 -- Manager, user folder and code cleanup
-v0.1.3, 12-18-2013 -- Script Packages
+2013-06-27 08:15:42     1656 +1656    -0 cc3125a cesarte@gmail.com 	first commit
+2013-06-27 08:32:01     1656    +1    -1 9461f8a cesarte@gmail.com 	xsiaddon link added
+2013-06-27 09:33:17     1083    +1  -574 03c01d6 cesarte@gmail.com 	cleanup
+2013-06-27 09:36:18     1084    +1    -0 20c5734 cesarte@gmail.com 	sample
+2013-06-27 09:39:19     1084    +1    -1 9fa272b cesarte@gmail.com 	typo
+2013-06-27 11:01:39     1091    +7    -0 004ecec cesarte@gmail.com 	new event: cache commands onstartup
+2013-06-29 00:03:11     1087    +0    -4 5b0fcb4 cesarte@gmail.com 	cache and scripts are now stored on a user directory
+2013-06-29 00:03:33     1295  +208    -0 85b7a0d cesarte@gmail.com 	New preferences windows
+2013-06-29 00:03:50     1294    +3    -4 e664cf2 cesarte@gmail.com 	v1.0.1
+2013-06-29 00:04:25     1357  +102   -39 586a25f cesarte@gmail.com 	new manager
+2013-06-29 00:04:47     1366   +14    -5 4973a32 cesarte@gmail.com 	v0.1.1
+2013-06-29 00:06:04     1367    +2    -1 2c67321 cesarte@gmail.com 	v0.1.1
+2013-06-29 01:14:00     1367    +1    -1 dc2a8b0 cesarte@gmail.com 	v0.1.1
+2013-07-06 16:34:13     1371    +9    -5 d103487 cesarte@gmail.com 	v 0.1.2
+2013-12-16 16:14:15     1372    +1    -0 32f7b11 cesarte@gmail.com 	MINOR FIX: force menu to close on execution
+2013-12-18 15:30:33     1375   +13   -10 fa84349 cesarte@gmail.com 	v0.1.3 -- Script packages
+2013-12-18 18:32:07     1375    +1    -1 166341a cesarte@gmail.com 	xsiaddon link updated v0.1.3
+2013-12-28 12:20:11     1377    +3    -1 3c57697 cesarte@gmail.com 	Issue #5: include package name on script listing
+2014-01-12 01:20:19     1381    +5    -1 bab8b57 cesarte@gmail.com 	exclude README.md
