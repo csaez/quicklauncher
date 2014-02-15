@@ -14,7 +14,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from wishlib.si import C, log, show_qt
-from PyQt4 import QtGui
+from wishlib.qt import QtGui
 
 
 def XSILoadPlugin(in_reg):

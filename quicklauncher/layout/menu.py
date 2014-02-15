@@ -13,13 +13,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from wishlib.qt.QtGui import QMenu
-from PyQt4 import QtGui
-
+from wishlib.qt import QtGui, widgets
 from .. import manager
 
 
-class Menu(QMenu):
+class Menu(widgets.QMenu):
 
     def __init__(self, parent=None):
         super(Menu, self).__init__(parent)

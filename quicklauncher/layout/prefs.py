@@ -14,20 +14,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-from PyQt4 import uic, QtGui
-from wishlib.qt.QtGui import QMainWindow
+from wishlib.qt import QtGui, loadUi, widgets
 from wishlib.si import OverrideWin32Controls
 
 from .. import manager
 
 
-class Prefs(QMainWindow):
+class Prefs(widgets.QMainWindow):
 
     def __init__(self, parent=None):
         super(Prefs, self).__init__(parent)
         # load from ui file
         uifile = os.path.join(os.path.dirname(__file__), "ui", "prefs.ui")
-        self.ui = uic.loadUi(os.path.normpath(uifile), self)
+        self.ui = loadUi(os.path.normpath(uifile), self)
         icon = os.path.join(os.path.dirname(__file__), "ui", "images",
                             "folder_open_icon&16.png")
         self.ui.scripts_button.setIcon(QtGui.QIcon(icon))

@@ -4,7 +4,7 @@ A simple menu to find and execute Softimage commands and scripts.
 
 Dependencies
 ------------
-- [PyQt For Softimage](http://github.com/caron/PyQtForSoftimage)
+- [PyQtForSoftimage](http://github.com/caron/PyQtForSoftimage)
 - [wishlib](http://github.com/wishdev-project/wishlib)
 
 Installation
@@ -14,8 +14,8 @@ and drop it on a softimage viewport.
 
 or...
 
-Clone the repo, copy `quicklauncher_plugin.py` file to a softimage plugin
-directory and install the python modules as following:
+Clone the repo, copy/symlink `quicklauncher_plugin.py` to a softimage
+plugin directory and install the python modules as following.
 
     python setup.py install
 
