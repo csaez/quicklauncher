@@ -13,14 +13,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from wishlib import inside_softimage, inside_maya
 from wishlib.qt import QtGui
 from ..manager import Manager
 
 
-class Menu(QtGui.QMenu):
+class MenuInterface(QtGui.QMenu):
 
     def __init__(self, parent=None):
-        super(Menu, self).__init__(parent)
+        super(MenuInterface, self).__init__(parent)
         # set the menu as active window
         self.activateWindow()
         # instanciate quicklauncher manager
@@ -62,3 +63,14 @@ class Menu(QtGui.QMenu):
         key = str(action.text())
         self.close()
         self.manager.execute(key)
+
+if inside_softimage():
+    class Menu(MenuInterface):
+        pass
+
+elif inside_maya():
+    class Menu(MenuInterface):
+
+        def __init__(self, parent):
+            super(Menu, self).__init__(parent)
+            self.manager.scan()
