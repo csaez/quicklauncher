@@ -17,8 +17,6 @@ import os
 import json
 from collections import OrderedDict
 
-from wishlib.si import si
-
 
 class Manager(object):
 
@@ -32,13 +30,18 @@ class Manager(object):
         self.CACHE_FILE = os.path.join(self.HOME_DIR, "cache.json")
 
     def scan(self):
+        data = self.get_cmds()
+        data.update(self.get_scripts())
+        # save to file
+        with open(self.CACHE_FILE, "w") as f:
+            json.dump(data, f)
+        return data
+
+    def get_cmds(self):
+        return dict()
+
+    def get_scripts(self):
         data = dict()
-        # get all softimage commands without arguments or with default values
-        for cmd in si.Commands:
-            if not cmd.Arguments.Count or all([arg.Value for arg in cmd.Arguments]):
-                cmd_name = str(cmd.Name)
-                data[cmd_name] = cmd_name
-        # get custom scripts
         EXCEPTIONS = ["README.md"]
         for root, dirnames, filenames in os.walk(self.script_dir):
             if ".git" in root:
@@ -52,9 +55,7 @@ class Manager(object):
                     # include package reference on key
                     key = script.replace(self.script_dir, "")[1:]
                     data[key] = script
-        # save to file
-        with open(self.CACHE_FILE, "w") as f:
-            json.dump(data, f)
+        print data
         return data
 
     def find(self, word):
@@ -130,8 +131,4 @@ class Manager(object):
             json.dump(self.preferences, f, indent=4)
 
     def execute(self, key):
-        code = self.data.get(key)
-        if os.path.isfile(code):
-            si.ExecuteScript(code)
-        else:
-            si.Commands(code).Execute()
+        pass

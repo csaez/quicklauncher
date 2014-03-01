@@ -14,34 +14,48 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-from wishlib.qt import QtGui, loadUi, widgets
-from wishlib.si import OverrideWin32Controls
+from wishlib import inside_softimage, inside_maya
+from wishlib.qt import QtGui, loadUiType
+from ..manager import Manager
 
-from .. import manager
+ui_file = os.path.join(os.path.dirname(__file__), "ui", "prefs.ui")
+form, base = loadUiType(ui_file)
 
 
-class Prefs(widgets.QMainWindow):
+class PrefsInterface(form, base):
 
     def __init__(self, parent=None):
-        super(Prefs, self).__init__(parent)
-        # load from ui file
-        uifile = os.path.join(os.path.dirname(__file__), "ui", "prefs.ui")
-        self.ui = loadUi(os.path.normpath(uifile), self)
+        super(PrefsInterface, self).__init__(parent)
+        self.setupUi(self)
         icon = os.path.join(os.path.dirname(__file__), "ui", "images",
                             "folder_open_icon&16.png")
-        self.ui.scripts_button.setIcon(QtGui.QIcon(icon))
+        self.scripts_button.setIcon(QtGui.QIcon(icon))
+        # connect signals
+        self.scripts_button.clicked.connect(self.scripts_clicked)
+        self.limit_spinBox.valueChanged.connect(self.limit_changed)
         # get manager and set values
-        self.manager = manager.Manager()
-        self.ui.limit_spinBox.setValue(self.manager.limit)
-        self.ui.scripts_lineEdit.setText(self.manager.script_dir)
+        self.manager = Manager()
+        self.limit_spinBox.setValue(self.manager.limit)
+        self.scripts_lineEdit.setText(self.manager.script_dir)
 
     def limit_changed(self, value):
         self.manager.limit = value
 
-    @OverrideWin32Controls
     def scripts_clicked(self):
         script_dir = str(QtGui.QFileDialog.getExistingDirectory(
             self, "Scripts directory", self.manager.script_dir))
         if len(script_dir):
             self.manager.script_dir = script_dir
-            self.ui.scripts_lineEdit.setText(script_dir)
+            self.scripts_lineEdit.setText(script_dir)
+
+if inside_softimage():
+    from wishlib.si import OverrideWin32Controls
+
+    class Prefs(PrefsInterface):
+
+        @OverrideWin32Controls
+        def scripts_clicked(self):
+            super(Prefs, self).scripts_clicked()
+elif inside_maya():
+    class Prefs(PrefsInterface):
+        pass

@@ -13,18 +13,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from wishlib.qt import QtGui, widgets
-from .. import manager
+from wishlib.qt import QtGui
+from ..manager import Manager
 
 
-class Menu(widgets.QMenu):
+class Menu(QtGui.QMenu):
 
     def __init__(self, parent=None):
         super(Menu, self).__init__(parent)
         # set the menu as active window
         self.activateWindow()
         # instanciate quicklauncher manager
-        self.manager = manager.Manager()
+        self.manager = Manager()
         # add filter lineedit
         self.filter_lineEdit = QtGui.QLineEdit()
         action = QtGui.QWidgetAction(self)

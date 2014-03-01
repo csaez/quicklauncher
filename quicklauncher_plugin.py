@@ -14,7 +14,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from wishlib.si import C, log, show_qt
-from wishlib.qt import QtGui
 
 
 def XSILoadPlugin(in_reg):
@@ -38,6 +37,7 @@ def XSIUnloadPlugin(in_reg):
 def QuickLauncher_Execute():
     log("QuickLauncher_Execute called", C.siVerbose)
     from quicklauncher.layout.menu import Menu
+    from wishlib.qt import QtGui
     pos = QtGui.QCursor.pos()
     show_qt(Menu, modal=True, onshow_event=lambda x: x.move(pos.x(), pos.y()))
 
