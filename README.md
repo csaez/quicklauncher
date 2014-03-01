@@ -1,6 +1,6 @@
 QuickLauncher
 =============
-A simple menu to find and execute Softimage commands and scripts.
+A quick menu to find and execute Softimage/Maya commands and scripts.
 
 Dependencies
 ------------
