@@ -1,5 +1,5 @@
 # This file is part of quicklauncher.
-# Copyright (C) 2014  Cesar Saez
+# Copyright (C) 2014 Cesar Saez
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,11 +13,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from ez_setup import use_setuptools
+use_setuptools()
 from setuptools import setup, find_packages
 
 setup(
     name="quicklauncher",
-    version="0.1.4",
+    version="0.2.0",
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     package_data={"quicklauncher.layout": ["ui/*.*", "ui/images/*.*"]},
     author="Cesar Saez",
@@ -25,5 +27,5 @@ setup(
     description="A simple menu to find and execute Softimage commands/scripts.",
     url="http://www.github.com/csaez/quicklauncher",
     license="GNU General Public License (GPLv3)",
-    install_requires=["wishlib>=0.3.0"]
+    install_requires=["wishlib>=0.4.1"]
 )

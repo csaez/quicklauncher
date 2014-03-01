@@ -4,20 +4,27 @@ A simple menu to find and execute Softimage commands and scripts.
 
 Dependencies
 ------------
-- [PyQtForSoftimage](http://github.com/caron/PyQtForSoftimage)
-- [wishlib](http://github.com/wishdev-project/wishlib)
+- [wishlib](http://github.com/csaez/wishlib)
+- [PyQtForSoftimage](http://github.com/caron/PyQtForSoftimage) (Softimage)
 
 Installation
 ------------
-Grab a pre-packed xsiaddon from [here](http://goo.gl/e2WWN7) (includes wishlib)
-and drop it on a softimage viewport.
+###Softimage version:
+*The easy way*: Grab a pre-packed xsiaddon from [here](http://goo.gl/e2WWN7)
+(includes wishlib) and drop it on a softimage viewport.
 
-or...
+*The 'hard' way*: Install the python modules and copy/symlink
+`quicklauncher_plugin.py` to a softimage plugin directory.
 
-Clone the repo, copy/symlink `quicklauncher_plugin.py` to a softimage
-plugin directory and install the python modules as following.
+###Maya version:
+Install the python modules and copy/symlink `quicklauncher.py` to your script
+directory (or use the source code directly).
+
+### Python modules:
+Clone the repo and type in a terminal:
 
     python setup.py install
+
 
 Ussage
 ------
