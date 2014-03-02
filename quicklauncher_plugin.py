@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from wishlib.si import C, log, show_qt
+from wishlib.si import si, C, log
 
 
 def XSILoadPlugin(in_reg):
@@ -36,27 +36,26 @@ def XSIUnloadPlugin(in_reg):
 
 def QuickLauncher_Execute():
     log("QuickLauncher_Execute called", C.siVerbose)
-    from quicklauncher.layout.menu import Menu
-    from wishlib.qt import QtGui
-    pos = QtGui.QCursor.pos()
-    show_qt(Menu, modal=True, onshow_event=lambda x: x.move(pos.x(), pos.y()))
+    import quicklauncher
+    quicklauncher.show()
+    return True
 
 
 def QuickLauncherReloader_Execute():
     log("QuickLauncherReloader_Execute called", C.siVerbose)
-    from quicklauncher.manager import Manager
-    Manager().scan()  # reload cache on disk
+    import quicklauncher
+    quicklauncher.reload()
     return True
 
 
 def QuickLauncherPreferences_Execute():
     log("QuickLauncherPreferences_Execute called", C.siVerbose)
-    from quicklauncher.layout.prefs import Prefs
-    show_qt(Prefs)
+    import quicklauncher
+    quicklauncher.prefs()
     return True
 
 
 def QuickLauncher_Startup_OnEvent(in_ctxt):
     log("QuickLauncher_Startup_OnEvent called", C.siVerbose)
-    Application.QuickLauncher_Reloader()
+    si.QuickLauncher_Reloader()
     return True

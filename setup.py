@@ -19,7 +19,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="quicklauncher",
-    version="0.2.0",
+    version="0.3.0",
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     package_data={"quicklauncher.layout": ["ui/*.*", "ui/images/*.*"]},
     author="Cesar Saez",
