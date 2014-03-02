@@ -2,6 +2,8 @@ QuickLauncher
 =============
 A quick menu to find and execute Softimage/Maya commands and scripts.
 
+![](quicklauncher.gif?raw=true)
+
 Dependencies
 ------------
 - [wishlib](http://github.com/csaez/wishlib)

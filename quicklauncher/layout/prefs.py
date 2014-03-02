@@ -49,13 +49,15 @@ class PrefsInterface(form, base):
             self.scripts_lineEdit.setText(script_dir)
 
 if inside_softimage():
-    from wishlib.si import OverrideWin32Controls
+    from wishlib.si import si
 
     class Prefs(PrefsInterface):
 
-        @OverrideWin32Controls
         def scripts_clicked(self):
+            si.Desktop.SuspendWin32ControlsHook()
             super(Prefs, self).scripts_clicked()
+            si.Desktop.RestoreWin32ControlsHook()
+
 elif inside_maya():
     class Prefs(PrefsInterface):
         pass

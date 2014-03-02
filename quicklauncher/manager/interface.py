@@ -55,7 +55,6 @@ class Manager(object):
                     # include package reference on key
                     key = script.replace(self.script_dir, "")[1:]
                     data[key] = script
-        print data
         return data
 
     def find(self, word):
