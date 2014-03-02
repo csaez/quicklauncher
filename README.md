@@ -2,7 +2,7 @@ QuickLauncher
 =============
 A quick menu to find and execute Softimage/Maya commands and scripts.
 
-![](quicklauncher.gif?raw=true)
+![](docs/quicklauncher.gif?raw=true)
 
 Dependencies
 ------------
