@@ -39,7 +39,7 @@ Ussage
     import quicklauncher
     quicklauncher.show()    # launch the menu
     quicklauncher.prefs()   # preferences
-    quicklauncher.reload()  # update the command/plugin list
+    quicklauncher.reload()  # update the command/script list
 
 > Note: Softimage version include custom commands for launch, prefs and
 > reload!
