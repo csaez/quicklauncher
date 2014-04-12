@@ -16,7 +16,8 @@
 import os
 import inspect
 from . import interface
-import pymel.core.runtime as cmds
+from pymel import core as pm
+cmds = pm.runtime
 
 
 class Manager(interface.Manager):
@@ -30,6 +31,11 @@ class Manager(interface.Manager):
             fp = os.path.join(self.script_dir, v)
             with open(fp) as f:
                 code = f.read()
-            exec(code)
+            # python
+            if fp.endswith(".py"):
+                exec(code)
+            # mel
+            elif fp.endswith(".mel"):
+                pm.mel.eval(code)
         else:
             getattr(cmds, v)()
