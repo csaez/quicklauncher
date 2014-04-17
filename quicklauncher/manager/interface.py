@@ -15,7 +15,11 @@
 
 import os
 import json
-from collections import OrderedDict
+
+try:
+    from collections import OrderedDict
+except ImportError:
+    from wishlib.ordereddict import OrderedDict  # python < 2.7
 
 
 class Manager(object):
