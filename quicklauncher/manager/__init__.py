@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from wishlib import inside_maya, inside_softimage
 
 if inside_softimage():
