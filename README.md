@@ -43,7 +43,7 @@ project through its `setup.py` script (_highly recommended!_).
 
 ## Contributing
 
-- [Check for open issues] (https://github.com/csaez/mauto/issues) or open
+- [Check for open issues](https://github.com/csaez/mauto/issues) or open
 a fresh issue to start a discussion around a feature idea or a bug.
 - Fork the [mauto repository on Github](https://github.com/csaez/mauto)
 to start making your changes (make sure to isolate your changes in a local branch when possible).

@@ -28,15 +28,13 @@ from setuptools import setup, find_packages
 config = {
     "name": "quicklauncher",
     "description": "quicklauncher is a simple menu to find and launch Maya commands and user scripts.",
-    "version": "0.1.0",
+    "version": "2.0.0",
     "license": "The MIT License",
     "author": "Cesar Saez",
     "author_email": "cesarte@gmail.com",
     "url": "https://www.github.com/csaez/quicklauncher",
     "packages": find_packages(exclude=["ez_setup", "tests"]),
-    "package_data": {"quicklauncher.gui": ["images/*.*"]},
     "tests_require": ["nose", "coverage", "mock"],
-    "scripts": []
 }
 
 setup(**config)
