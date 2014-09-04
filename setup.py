@@ -1,31 +1,42 @@
-# This file is part of quicklauncher.
-# Copyright (C) 2014 Cesar Saez
+# The MIT License (MIT)
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation version 3.
+# Copyright (c) 2014 Cesar Saez
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
 
 from ez_setup import use_setuptools
 use_setuptools()
 from setuptools import setup, find_packages
 
-setup(
-    name="quicklauncher",
-    version="0.3.0",
-    packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-    package_data={"quicklauncher.layout": ["ui/*.*", "ui/images/*.*"]},
-    author="Cesar Saez",
-    author_email="cesarte@gmail.com",
-    description="A simple menu to find and execute Softimage commands/scripts.",
-    url="http://www.github.com/csaez/quicklauncher",
-    license="GNU General Public License (GPLv3)",
-    install_requires=["wishlib>=0.4.1"]
-)
+config = {
+    "name": "quicklauncher",
+    "description": "quicklauncher is a simple menu to find and launch Maya commands and user scripts.",
+    "version": "0.1.0",
+    "license": "The MIT License",
+    "author": "Cesar Saez",
+    "author_email": "cesarte@gmail.com",
+    "url": "https://www.github.com/csaez/quicklauncher",
+    "packages": find_packages(exclude=["ez_setup", "tests"]),
+    "package_data": {"quicklauncher.gui": ["images/*.*"]},
+    "tests_require": ["nose", "coverage", "mock"],
+    "scripts": []
+}
+
+setup(**config)

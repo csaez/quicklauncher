@@ -1,47 +1,59 @@
 QuickLauncher
 =============
-A quick menu to find and execute Softimage/Maya commands and scripts.
-
-![](docs/quicklauncher.gif?raw=true)
-
-Dependencies
-------------
-- [wishlib](http://github.com/csaez/wishlib)
-- [PyQtForSoftimage](http://github.com/caron/PyQtForSoftimage) (Softimage)
-
-Installation
-------------
-###Softimage version:
-- Grab a pre-packed xsiaddon from [here](http://goo.gl/e2WWN7) and drop
-it on a softimage viewport.
-
-*or...*
-
-- Install the python modules and copy/symlink `quicklauncher_plugin.py` to
-a softimage plugin directory.
-
-###Maya version:
-- Grab a pre-packed zip from [here](http://goo.gl/yEm4V1) and uncompress the
-contents in your user script directory.
-
-*or...*
-
-- Install the python modules.
-
-### Python modules:
-Clone the repo and type in a terminal:
-
-    python setup.py install
+A quick menu to find and execute Maya commands and user scripts.
 
 
-Ussage
-------
-    import quicklauncher
-    quicklauncher.show()    # launch the menu
-    quicklauncher.prefs()   # preferences
-    quicklauncher.reload()  # update the command/script list
+## Dependencies
 
-> Note: Softimage version include custom commands for launch, prefs and
-> reload!
+- [PySide](http://qt-project.org/wiki/PySide)
+- [Nose](http://nose.readthedocs.org) + [Coverage](http://coverage.readthedocs.org) + [Mock](http://mock.readthedocs.org) (testing)
 
-For further information refer to the [documentation](https://github.com/csaez/quicklauncher/wiki).
+
+## Installation
+
+Copy/symlink `quicklauncher` directory somewhere in your `PYTHONPATH` (maya
+scripts directory should do the trick) or clone the repo and install the
+project through its `setup.py` script (_highly recommended!_).
+
+    mayapy setup.py install
+
+
+## Ussage
+
+    import quicklauncher as ql
+    
+    # show menu
+    ql.show()
+
+    # repository dialog
+    ql.select_repo()
+
+    # ... or go deeper using the API
+    ql.api.get_repo()
+    ql.api.set_repo(repository_path)
+
+    ql.api.get_scripts()  # {script_name: script_fullpath, ...}
+    ql.api.list_scripts() # [script_name, ...]
+    ql.api.run_script(script_name)
+    
+    ql.api.get_commands()  # {cmd_name: cmd_object, ...}
+    ql.api.list_commands() # [cmd_name, ...]
+    ql.api.run_cmd(cmd_name)
+
+
+## Contributing
+
+- [Check for open issues] (https://github.com/csaez/mauto/issues) or open
+a fresh issue to start a discussion around a feature idea or a bug.
+- Fork the [mauto repository on Github](https://github.com/csaez/mauto)
+to start making your changes (make sure to isolate your changes in a local branch when possible).
+- Write a test which shows that the bug was fixed or that the feature works
+as expected.
+- Send a pull request and bug the maintainer until it gets merged and
+published. :)
+
+Make sure to add yourself to `CONTRIBUTORS.md`
+
+## Limitations
+
+- `quicklauncher` does not support MEL scripts at the moment.
