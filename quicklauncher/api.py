@@ -50,16 +50,18 @@ def list_commands():
 
 
 def run_script(script_name):
-    # add repo to pythonpath
-    if get_repo() not in sys.path:
-        sys.path.append(get_repo())
-
+    # validate
     script_path = get_scripts().get(script_name)
     if not script_path:
         return False
-    module_name = script_name.replace(".py", "")
+    # add to pythonpath and execute
+    if os.path.dirname(script_path) not in sys.path:
+        sys.path.append(os.path.dirname(script_path))
+    module_name = os.path.split(script_path)[-1].replace(".py", "")
     __import__(module_name)
+    # cleanup
     del sys.modules[module_name]
+    sys.path = sys.path[:-1]
     return True
 
 

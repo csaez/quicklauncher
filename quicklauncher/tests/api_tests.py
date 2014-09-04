@@ -72,17 +72,33 @@ def test_run_cmd():
 
 
 def setup_script():
-    code = 'print("hello world!")'
+    setup_repo()
     with open(os.path.join(ql.api.get_repo(), "testsuite.py"), "w") as f:
+        code = 'print("im in the root dir")'
+        f.write(code)
+    subdir = os.path.join(ql.api.get_repo(), "test")
+    if not os.path.exists(subdir):
+        os.mkdir(subdir)
+    with open(os.path.join(subdir, "testsuite.py"), "w") as f:
+        code = 'print("im in a subdir")'
         f.write(code)
 
 
 def teardown_script():
-    path = os.path.join(ql.api.get_repo(), "testsuite.py")
-    if os.path.exists(path):
-        os.remove(path)
+    for x in ("testsuite.py", "testsuite.pyc"):
+        path = os.path.join(ql.api.get_repo(), x)
+        if os.path.exists(path):
+            os.remove(path)
+    subdir = os.path.join(ql.api.get_repo(), "test")
+    for x in ("testsuite.py", "testsuite.pyc"):
+        path = os.path.join(subdir, x)
+        if os.path.exists(path):
+            os.remove(path)
+    os.rmdir(subdir)
+    teardown_repo()
 
 
 @with_setup(setup_script, teardown_script)
 def test_run_script():
     ql.api.run_script("testsuite.py")
+    ql.api.run_script("test/testsuite.py")
