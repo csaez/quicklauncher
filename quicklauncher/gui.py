@@ -1,11 +1,7 @@
 from . import api
 
-try:
-    from PySide import QtCore, QtGui
-    from shiboken import wrapInstance
-except ImportError:
-    class QtGui:
-        QMenu = object
+from PySide import QtCore, QtGui
+from shiboken import wrapInstance
 
 try:
     from maya import OpenMayaUI
