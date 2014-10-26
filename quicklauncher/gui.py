@@ -4,7 +4,7 @@ from PySide import QtCore, QtGui
 
 
 class QuickLauncher(QtGui.QMenu):
-    """Popup window for quick selection of available entries in maya.cmds"""
+    """A quick menu to find and execute Maya commands and user scripts."""
 
     def __init__(self, *args, **kwds):
         super(QuickLauncher, self).__init__(*args, **kwds)
