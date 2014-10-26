@@ -1,15 +1,10 @@
-from . import api
+from . import lib
 
 from PySide import QtCore, QtGui
-from shiboken import wrapInstance
-
-try:
-    from maya import OpenMayaUI
-except ImportError:
-    pass
 
 
 class QuickLauncher(QtGui.QMenu):
+    """A quick menu to find and execute Maya commands and user scripts."""
 
     def __init__(self, *args, **kwds):
         super(QuickLauncher, self).__init__(*args, **kwds)
@@ -23,8 +18,8 @@ class QuickLauncher(QtGui.QMenu):
         self.addAction(action)
         self.lineEdit.setFocus()
         # completion
-        items = api.list_scripts()
-        items.extend(api.list_commands())
+        items = lib.list_scripts()
+        items.extend(lib.list_commands())
         completer = QtGui.QCompleter(items, self)
         completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)
         completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
@@ -35,26 +30,36 @@ class QuickLauncher(QtGui.QMenu):
     def accept(self):
         text = self.lineEdit.text()
         self.close()
-        if not api.run_cmd(text):
-            api.run_script(text)
-
-
-def get_parent():
-    ptr = OpenMayaUI.MQtUtil.mainWindow()
-    return wrapInstance(long(ptr), QtGui.QMainWindow)
-
-
-def show():
-    m = QuickLauncher(parent=get_parent())
-    pos = QtGui.QCursor.pos()
-    m.move(pos.x(), pos.y())
-    m.exec_()
-    del m
+        if not lib.run_cmd(text):
+            lib.run_script(text)
 
 
 def select_repo():
     repo = QtGui.QFileDialog.getExistingDirectory(
-        parent=get_parent(), caption="Select repository directory",
-        dir=api.get_repo())
+        caption="Select repository directory",
+        parent=lib.get_parent(),
+        dir=lib.get_repo())
     if repo:
-        api.set_repo(repo)
+        lib.set_repo(repo)
+
+
+def setup_hotkey():
+    """Assign TAB-key top open quicklauncher"""
+    hotkey_sequence = QtGui.QKeySequence(QtCore.Qt.Key_Tab)
+    hotkey_log = QtGui.QShortcut(hotkey_sequence, lib.get_parent())
+    hotkey_log.activated.connect(show)
+
+
+def show():
+    m = QuickLauncher(parent=lib.get_parent())
+
+    position_window(m)
+
+    m.exec_()
+    del m
+
+
+def position_window(window):
+    """Position window to mouse cursor"""
+    pos = QtGui.QCursor.pos()
+    window.move(pos.x(), pos.y())
