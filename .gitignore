@@ -34,3 +34,4 @@ env/
 
 #vim
 .ropeproject
+*/.ropeproject
