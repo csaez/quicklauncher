@@ -29,5 +29,8 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-# Virtualenv
+#Virtualenv
 env/
+
+#vim
+.ropeproject
