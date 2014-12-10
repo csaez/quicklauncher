@@ -1,5 +1,4 @@
 from . import lib
-
 from PySide import QtCore, QtGui
 
 
@@ -8,6 +7,7 @@ class QuickLauncher(QtGui.QMenu):
 
     def __init__(self, *args, **kwds):
         super(QuickLauncher, self).__init__(*args, **kwds)
+        self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         self.init_gui()
 
     def init_gui(self):
@@ -52,11 +52,8 @@ def setup_hotkey():
 
 def show():
     m = QuickLauncher(parent=lib.get_parent())
-
     position_window(m)
-
     m.exec_()
-    del m
 
 
 def position_window(window):

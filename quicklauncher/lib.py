@@ -22,6 +22,14 @@ __all__ = ['get_parent',
            'run_cmd']
 
 
+class CaseInsensitiveDict(dict):
+    def get(self, name):
+        for k in self.keys():
+            if name.lower() == k.lower():
+                return self.__getitem__(k)
+        return super(CaseInsensitiveDict, self).get(name)
+
+
 def get_parent():
     """Return main window as QObject"""
     ptr = OpenMayaUI.MQtUtil.mainWindow()
@@ -57,7 +65,7 @@ def list_scripts():
 
 def get_commands():  # {name: cmd, ...}
     items = [x for x in inspect.getmembers(cmds, callable)]
-    return dict(items)
+    return CaseInsensitiveDict(items)
 
 
 def list_commands():
@@ -80,8 +88,8 @@ def run_script(script_name):
 
 
 def run_cmd(cmd_name):
-    commands = get_commands()
-    if commands.get(cmd_name):
-        commands[cmd_name]()
+    cmd = get_commands().get(cmd_name)
+    if cmd is not None:
+        cmd()
         return True
     return False
