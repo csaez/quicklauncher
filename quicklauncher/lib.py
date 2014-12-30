@@ -23,11 +23,12 @@ __all__ = ['get_parent',
 
 
 class CaseInsensitiveDict(dict):
-    def get(self, name):
+
+    def get(self, name, **kwds):
         for k in self.keys():
             if name.lower() == k.lower():
                 return self.__getitem__(k)
-        return super(CaseInsensitiveDict, self).get(name)
+        return super(CaseInsensitiveDict, self).get(name, **kwds)
 
 
 def get_parent():

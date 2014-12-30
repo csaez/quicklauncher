@@ -3,11 +3,11 @@ from PySide import QtCore, QtGui
 
 
 class QuickLauncher(QtGui.QMenu):
-    """A quick menu to find and execute Maya commands and user scripts."""
+
+    """A menu to find and execute Maya commands and user scripts."""
 
     def __init__(self, *args, **kwds):
         super(QuickLauncher, self).__init__(*args, **kwds)
-        self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         self.init_gui()
 
     def init_gui(self):
@@ -44,19 +44,32 @@ def select_repo():
 
 
 def setup_hotkey():
-    """Assign TAB-key top open quicklauncher"""
+    """Assign TAB-key to open quicklauncher"""
     hotkey_sequence = QtGui.QKeySequence(QtCore.Qt.Key_Tab)
     hotkey_log = QtGui.QShortcut(hotkey_sequence, lib.get_parent())
     hotkey_log.activated.connect(show)
 
 
 def show():
-    m = QuickLauncher(parent=lib.get_parent())
-    position_window(m)
-    m.exec_()
+    maya_window = lib.get_parent()
+    # look for existing instances of QuickLauncher
+    ql = get_instance(maya_window, QuickLauncher)
+    if ql is None:
+        # create a new instance
+        ql = QuickLauncher(maya_window)
+    # move and show
+    position_window(ql)
+    ql.exec_()
 
 
 def position_window(window):
     """Position window to mouse cursor"""
     pos = QtGui.QCursor.pos()
     window.move(pos.x(), pos.y())
+
+
+def get_instance(parent, gui_class):
+    for children in parent.children():
+        if isinstance(children, gui_class):
+            return children
+    return None
