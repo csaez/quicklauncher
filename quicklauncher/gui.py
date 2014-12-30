@@ -57,7 +57,8 @@ def show():
     if ql is None:
         # create a new instance
         ql = QuickLauncher(maya_window)
-    # move and show
+    # clear out, move and show
+    ql.lineEdit.setText("")
     position_window(ql)
     ql.exec_()
 
