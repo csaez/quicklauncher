@@ -3,6 +3,8 @@ QuickLauncher
 
 A minimal Qt based menu to quickly find and execute Maya commands and user scripts.
 
+![quicklauncher](https://cloud.githubusercontent.com/assets/2292742/17669950/1be0ea84-6353-11e6-8726-f233cfc2ea25.gif)
+
 > Requires Autodesk Maya 2014+
 
 
