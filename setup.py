@@ -21,8 +21,6 @@
 # THE SOFTWARE.
 
 
-from ez_setup import use_setuptools
-use_setuptools()
 from setuptools import setup, find_packages
 
 config = {
@@ -33,8 +31,9 @@ config = {
     "author": "Cesar Saez",
     "author_email": "cesarte@gmail.com",
     "url": "https://www.github.com/csaez/quicklauncher",
-    "packages": find_packages(exclude=["ez_setup", "tests"]),
-    "tests_require": ["nose", "coverage", "mock"],
+    "packages": find_packages(exclude=["tests"]),
+    "test_suite": "tests",
+    "tests_require": ["mock"],
 }
 
 setup(**config)
