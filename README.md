@@ -5,7 +5,7 @@ A minimal Qt based menu to quickly find and execute Maya commands and user scrip
 
 ![quicklauncher](https://cloud.githubusercontent.com/assets/2292742/17669950/1be0ea84-6353-11e6-8726-f233cfc2ea25.gif)
 
-> Requires Autodesk Maya 2014+
+> `quicklauncher` relies on PySide, it should work out of the box on Autodesk Maya 2014 or greater.
 
 
 ## Installation
@@ -13,16 +13,13 @@ A minimal Qt based menu to quickly find and execute Maya commands and user scrip
 Append inner `quicklauncher` directory to your PYTHONPATH.
 
 - **Windows**
-
 ```bat
 $ cd quicklauncher
 $ set PYTHONPATH=%PYTHONPATH%;%CD%\quicklauncher
 ```
 
 - **Unix**
-
 ```bash
-# Unix
 $ cd quicklauncher
 $ export PYTHONPATH=${PYTHONPATH}:${PWD}/quicklauncher
 ```
@@ -55,9 +52,20 @@ quicklauncher.setup_hotkey()
 > attribute editor and editors alike.
 
 
-For more info (there are a few), check the [Wiki][]
+For more info (there are a few interesting things you can do), check the [Wiki][]
 
 [Wiki]: https://github.com/csaez/quicklauncher/wiki
+
+
+## Running tests
+
+This is not something the average user should worry about, but if you want to contribute to `quicklauncher` development you can run the test suite by typing the following from the root of the project.
+
+```bash
+python setup.py test
+```
+
+> Testing requires `mock`, it should be automatically installed by running the previous snippet in case it's not alreade available on your system.
 
 
 ## Contributing
