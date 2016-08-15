@@ -1,7 +1,4 @@
-#############
-## Python
-#############
-
+# Python
 *.py[co]
 
 # Packages
@@ -26,12 +23,5 @@ pip-log.txt
 #Translations
 *.mo
 
-#Mr Developer
-.mr.developer.cfg
-
 #Virtualenv
-env/
-
-#vim
-.ropeproject
-*/.ropeproject
+venv/

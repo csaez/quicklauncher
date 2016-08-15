@@ -9,4 +9,3 @@
 
 * Marcus Ottosson (mottosso)
     - Added TAB-key for activation of window
-    - Refactored API so as to not leak into implementation
