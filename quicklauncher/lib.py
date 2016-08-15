@@ -3,6 +3,7 @@
 import os
 import sys
 import inspect
+from importlib import import_module
 
 from PySide import QtCore, QtGui
 from shiboken import wrapInstance
@@ -79,12 +80,12 @@ def run_script(script_name):
     if not script_path:
         return False
     # add to pythonpath and execute
-    sys.path.append(os.path.dirname(script_path))
+    sys.path.insert(0, os.path.dirname(script_path))
     module_name = os.path.split(script_path)[-1].replace(".py", "")
-    __import__(module_name)
+    import_module(module_name)
     # cleanup
     del sys.modules[module_name]
-    sys.path = sys.path[:-1]
+    sys.path = sys.path[1:]
     return True
 
 
