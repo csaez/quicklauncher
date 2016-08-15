@@ -65,7 +65,7 @@ This is not something the average user should worry about, but if you want to co
 python setup.py test
 ```
 
-> Testing requires `mock`, it should be automatically installed by running the previous snippet in case it's not alreade available on your system.
+> Testing requires `mock`, it should be automatically installed by running the previous snippet in case it's not already available on your system.
 
 
 ## Contributing
