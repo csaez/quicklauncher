@@ -10,21 +10,15 @@ A minimal Qt based menu to quickly find and execute Maya commands and user scrip
 
 ## Installation
 
-Append inner `quicklauncher` directory to your PYTHONPATH.
+There are many ways to go about this, but for casual user I would recommend simply copy
+`quicklauncher.py` to your maya script directory.
 
-- **Windows**
-```bat
-$ cd quicklauncher
-$ set PYTHONPATH=%PYTHONPATH%;%CD%\quicklauncher
+If you are a developer or want to integrate quicklauncher in your pipeline, use the standard
+`setup.py` script instead as it brings way more flexibility.
+
+```python
+python setup.py install
 ```
-
-- **Unix**
-```bash
-$ cd quicklauncher
-$ export PYTHONPATH=${PYTHONPATH}:${PWD}/quicklauncher
-```
-
-Or use the standard `setup.py` script.
 
 
 ## Usage
@@ -41,7 +35,7 @@ import quicklauncher
 quicklauncher.select_repo()
 ```
 
-And alternatively, assign TAB key.
+And alternatively, assign TAB key (it's kind of an special case as Maya reserve that key).
 
 ```python
 import quicklauncher
