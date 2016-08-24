@@ -122,9 +122,12 @@ class QuickLauncherMenu(QtGui.QMenu):
 
     def accept(self):
         text = self.lineEdit.text()
+        completion = self.lineEdit.completer().currentCompletion()
         self.close()
-        if not run_cmd(text):
-            run_script(text)
+        return run_cmd(text) or \
+            run_cmd(completion) or \
+            run_script(text) or \
+            run_script(completion)
 
 
 def select_repo():
