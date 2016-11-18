@@ -10,7 +10,8 @@ A minimal Qt based menu to quickly find and execute Maya commands and user scrip
 
 ## Installation
 
-There are many ways to go about this, but for casual users I would recommend simply copy
+There are many ways to go about this, but for casual users I would recommend to get the
+[latest release](https://github.com/csaez/quicklauncher/releases) and simply copy
 `quicklauncher.py` to your maya script directory.
 
 If you are a developer or want to integrate quicklauncher in your pipeline, I highly recommend
