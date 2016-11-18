@@ -24,10 +24,23 @@ import os
 import sys
 import inspect
 from importlib import import_module
+import maya.cmds as cmds
 
-from PySide import QtCore, QtGui
-from maya import cmds
-
+# qt bindings
+for each in ("PySide", "PySide2"):
+    try:
+        _temp = __import__(each, globals(), locals(), ('QtCore', 'QtGui'), -1)
+        QtCore = _temp.QtCore
+        QtGui = _temp.QtGui
+        if each == "PySide2":
+            _temp = __import__(each, globals(), locals(), ['QtWidgets'], -1)
+            QtWidgets = _temp.QtWidgets
+        else:
+            QtWidgets = QtGui
+    except ImportError:
+        pass
+    else:
+        break
 
 __all__ = ['show', 'get_main_window', 'get_repo', 'set_repo', 'list_scripts',
            'get_scripts', 'list_commands', 'get_commands', 'run_script',
@@ -95,7 +108,7 @@ def run_cmd(cmd_name):
 
 
 # GUI
-class QuickLauncherMenu(QtGui.QMenu):
+class QuickLauncherMenu(QtWidgets.QMenu):
 
     """A menu to find and execute Maya commands and user scripts."""
 
@@ -105,16 +118,16 @@ class QuickLauncherMenu(QtGui.QMenu):
 
     def init_gui(self):
         # set search field
-        self.lineEdit = QtGui.QLineEdit(self)
-        action = QtGui.QWidgetAction(self)
+        self.lineEdit = QtWidgets.QLineEdit(self)
+        action = QtWidgets.QWidgetAction(self)
         action.setDefaultWidget(self.lineEdit)
         self.addAction(action)
         self.lineEdit.setFocus()
         # completion
         items = list_scripts()
         items.extend(list_commands())
-        completer = QtGui.QCompleter(items, self)
-        completer.setCompletionMode(QtGui.QCompleter.PopupCompletion)
+        completer = QtWidgets.QCompleter(items, self)
+        completer.setCompletionMode(QtWidgets.QCompleter.PopupCompletion)
         completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
         self.lineEdit.setCompleter(completer)
         # connect signals
@@ -131,7 +144,7 @@ class QuickLauncherMenu(QtGui.QMenu):
 
 
 def select_repo():
-    repo = QtGui.QFileDialog.getExistingDirectory(
+    repo = QtWidgets.QFileDialog.getExistingDirectory(
         caption="Select repository directory",
         parent=get_main_window(),
         dir=get_repo())
@@ -139,15 +152,8 @@ def select_repo():
         set_repo(repo)
 
 
-def setup_hotkey():
-    """Assign TAB-key to open quicklauncher"""
-    hotkey_sequence = QtGui.QKeySequence(QtCore.Qt.Key_Tab)
-    hotkey_log = QtGui.QShortcut(hotkey_sequence, get_main_window())
-    hotkey_log.activated.connect(show)
-
-
 def get_main_window(widget=None):
-    widget = widget or QtGui.QApplication.activeWindow()
+    widget = widget or QtWidgets.QApplication.activeWindow()
     if widget is None:
         return
     parent = widget.parent()

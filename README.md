@@ -5,7 +5,7 @@ A minimal Qt based menu to quickly find and execute Maya commands and user scrip
 
 ![quicklauncher](https://cloud.githubusercontent.com/assets/2292742/17669950/1be0ea84-6353-11e6-8726-f233cfc2ea25.gif)
 
-> `quicklauncher` relies on PySide, it should work out of the box on Autodesk Maya 2014 or greater.
+> `quicklauncher` relies on PySide/PySide2 and should work out of the box on Autodesk Maya 2014 or greater.
 
 
 ## Installation
@@ -14,8 +14,7 @@ There are many ways to go about this, but for casual users I would recommend sim
 `quicklauncher.py` to your maya script directory.
 
 If you are a developer or want to integrate quicklauncher in your pipeline, I highly recommend
-the standard `setup.py` script as it brings more flexibility and is the exact same procedure as
-every other python library.
+the standard `setup.py` script as it brings more flexibility.
 
 ```python
 python setup.py install
@@ -36,31 +35,9 @@ import quicklauncher
 quicklauncher.select_repo()
 ```
 
-And alternatively, assign TAB key (it's kind of an special case as Maya reserve that key).
-
-```python
-import quicklauncher
-quicklauncher.setup_hotkey()
-```
-
-> Be aware that the later override Maya default behavior of the tab key jumping between inputs in the
-> attribute editor and editors alike.
-
-
 For more info, check the [Wiki][] (there are a few interesting things you can do).
 
 [Wiki]: https://github.com/csaez/quicklauncher/wiki
-
-
-## Running tests
-
-This is not something the average user should worry about, but if you want to contribute to `quicklauncher` development you can run the test suite by typing the following from the root of the project.
-
-```bash
-python setup.py test
-```
-
-> Testing requires `mock`, it should be automatically installed by running the previous snippet in case it's not already available on your system.
 
 
 ## Contributing

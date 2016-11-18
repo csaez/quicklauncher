@@ -1,9 +1,8 @@
 import os
-import mock
 import unittest
 from collections import Iterable
-
 import quicklauncher as ql
+
 
 _REPO = ql.get_repo()
 
@@ -18,26 +17,23 @@ class MiscCase(unittest.TestCase):
         self.assertEqual(len(ql.list_scripts()), len(ql.get_scripts()))
 
     def test_list_commands(self):
-        with mock.patch("maya.cmds", create=True):
-            self.assertIsInstance(ql.list_commands(), Iterable)
-            self.assertIsInstance(ql.get_commands(), dict)
-            self.assertEqual(len(ql.list_commands()),
-                             len(ql.get_commands()))
+        self.assertIsInstance(ql.list_commands(), Iterable)
+        self.assertIsInstance(ql.get_commands(), dict)
+        self.assertEqual(len(ql.list_commands()),
+                         len(ql.get_commands()))
 
     def test_run_cmd(self):
-        with mock.patch("maya.cmds", create=True):
-            self.assertTrue(ql.run_cmd("ls"))
+        self.assertTrue(ql.run_cmd("ls"))
 
 
 class RepoCase(unittest.TestCase):
     def setUp(self):
-        test_path = os.path.join(os.path.expanduser("~"), "testing")
-        ql.set_repo(test_path)
+        self.test_path = os.path.join(os.path.expanduser("~"), "testing")
+        ql.set_repo(self.test_path)
 
     def tearDown(self):
         ql.set_repo(_REPO)
-        test_path = os.path.join(os.path.expanduser("~"), "testing")
-        os.rmdir(test_path)
+        os.rmdir(self.test_path)
 
     def test_repo(self):
         test_path = os.path.join(os.path.expanduser("~"), "testing")
@@ -48,8 +44,8 @@ class RepoCase(unittest.TestCase):
 
 class ScriptCase(unittest.TestCase):
     def setUp(self):
-        test_path = os.path.join(os.path.expanduser("~"), "testing")
-        ql.set_repo(test_path)
+        self.test_path = os.path.join(os.path.expanduser("~"), "testing")
+        ql.set_repo(self.test_path)
 
         with open(os.path.join(ql.get_repo(), "testsuite.py"), "w") as f:
             code = 'print("im in the root dir")'
@@ -74,8 +70,7 @@ class ScriptCase(unittest.TestCase):
         os.rmdir(subdir)
 
         ql.set_repo(_REPO)
-        test_path = os.path.join(os.path.expanduser("~"), "testing")
-        os.rmdir(test_path)
+        os.rmdir(self.test_path)
 
     def test_run_script(self):
         self.assertTrue(ql.run_script("testsuite.py"))
@@ -83,4 +78,4 @@ class ScriptCase(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main(verbosity=3)
+    unittest.main(verbosity=3, exit=False)
