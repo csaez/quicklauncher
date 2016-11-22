@@ -3,7 +3,8 @@ QuickLauncher
 
 A minimal Qt based menu to quickly find and execute Maya commands and user scripts.
 
-![quicklauncher](https://cloud.githubusercontent.com/assets/2292742/17669950/1be0ea84-6353-11e6-8726-f233cfc2ea25.gif)
+![quicklauncher](https://cloud.githubusercontent.com/assets/2292742/20506707/8b19023c-b034-11e6-8598-a480924f8740.gif)
+
 
 > `quicklauncher` relies on PySide/PySide2 and should work out of the box on Autodesk Maya 2014 or greater.
 
