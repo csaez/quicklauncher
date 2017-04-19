@@ -27,21 +27,11 @@ from importlib import import_module
 import maya.cmds as cmds
 
 # qt bindings
-for each in ("PySide", "PySide2"):
-    try:
-        if each == "PySide2":
-            _temp = __import__(each, globals(), locals(), ['QtWidgets'], -1)
-            QtWidgets = _temp.QtWidgets
-        else:
-            _temp = __import__(each, globals(), locals(), ('QtGui'), -1)
-            QtWidgets = _temp.QtGui
-        _temp = __import__(each, globals(), locals(), ('QtCore'), -1)
-        QtCore = _temp.QtCore
-        QtGui = QtWidgets
-    except ImportError:
-        pass
-    else:
-        break
+try:
+    from PySide2 import QtCore, QtGui, QtWidgets
+except ImportError:
+    from PySide import QtCore, QtGui
+    QtWidgets = QtGui
 
 
 __all__ = ['show', 'get_main_window', 'get_repo', 'set_repo', 'list_scripts',
