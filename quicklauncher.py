@@ -59,7 +59,7 @@ def get_scripts():  # {name: path, ...}
     items = [os.path.join(path, f)
              for (path, _, files) in os.walk(get_repo())
              for f in files if f.endswith(".py")]
-    return dict(((x.replace("%s/" % get_repo(), ""), x) for x in items))
+    return {os.path.basename(x): x for x in items}
 
 
 def list_scripts():
