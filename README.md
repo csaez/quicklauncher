@@ -41,6 +41,14 @@ For more info, check the [Wiki][] (there are a few interesting things you can do
 
 [Wiki]: https://github.com/csaez/quicklauncher/wiki
 
+> **TIP:** You can refresh the list of available scripts without restarting Maya by simply
+> reloading the python module in the script editor (or add a little python script that does
+> this to your repo so it's available from the menu itself).
+>
+> ```python
+> import quicklauncher
+> reload(quicklauncher)
+> ```
 
 ## Contributing
 
@@ -56,8 +64,3 @@ For more info, check the [Wiki][] (there are a few interesting things you can do
 
 
 Make sure to add yourself to `CONTRIBUTORS.md`!
-
-
-## Known issues
-
-- `quicklauncher` does not supports MEL scripts at the moment.
