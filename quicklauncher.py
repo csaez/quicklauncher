@@ -24,7 +24,7 @@ import os
 import sys
 import inspect
 from importlib import import_module
-import maya.cmds as cmds
+from maya import cmds, mel
 
 # qt bindings
 try:
@@ -58,7 +58,7 @@ def set_repo(repo_path):
 def get_scripts():  # {name: path, ...}
     items = [os.path.join(path, f)
              for (path, _, files) in os.walk(get_repo())
-             for f in files if f.endswith(".py")]
+             for f in files if f.endswith(".py") or f.endswith(".mel")]
     return {os.path.basename(x): x for x in items}
 
 
@@ -81,6 +81,22 @@ def run_script(script_name):
     script_path = get_scripts().get(script_name)
     if not script_path:
         return False
+    # delegate to lang runner
+    if script_name.endswith(".py"):
+        return _run_python(script_path)
+    if script_name.endswith(".mel"):
+        return _run_mel(script_path)
+    return False
+
+def _run_mel(script_path):
+    filepath = os.path.join(get_repo(), script_path)
+    if not os.path.exists(filepath):
+        return False
+    with open(filepath, "r") as fp:
+        mel.eval(fp.read())
+    return True
+
+def _run_python(script_path):
     # add to pythonpath and execute
     sys.path.insert(0, os.path.dirname(script_path))
     module_name = os.path.split(script_path)[-1].replace(".py", "")
@@ -89,7 +105,6 @@ def run_script(script_name):
     del sys.modules[module_name]
     sys.path = sys.path[1:]
     return True
-
 
 def run_cmd(cmd_name):
     cmd = get_commands().get(cmd_name.lower())
